@@ -22,17 +22,25 @@ header{height:40px;background-color:#666666;font:12px/40px "";color:#cccccc;}
 #content p{font:24px/68px "";color:#666;text-align: center;}
 
 #main{background:#fff;}
-#main #table{font:12px/62px "";width:442px;margin:0 auto;}
-#main #table #username{width:442px;border:1px solid #999;margin:20px auto 0 auto;}
+#main #table{font:12px/62px "";width:442px;margin:20px auto 0 auto;}
+#main #table #username,#passWord,#passWord1{width:442px;border:1px solid #999;margin:0 auto;}
 #main #table #username span{display: inline-block;height:62px;width:66px;}
 #main #table #username span img{width:18px;height:18px;margin:0 25px;}
 #main #table #username input{border:none;width:350px;}
+
+#main #table #passWord span{display: inline-block;height:62px;width:66px;}
+#main #table #passWord span img{width:18px;height:18px;margin:0 25px;}
+#main #table #passWord input{border:none;width:350px;}
+
+#main #table #passWord1 span{display: inline-block;height:62px;width:66px;}
+#main #table #passWord1 span img{width:18px;height:18px;margin:0 25px;}
+#main #table #passWord1 input{border:none;width:350px;}
 #main #table i{display: block;height: 30px;font:12px/30px "";color:red;}
 #main #table #mima{width:442px;border:1px solid #999;margin:0 auto;}
 #main #table #mima span{display: inline-block;height:62px;width:66px;}
 #main #table #mima span img{width:18px;height:18px;margin:0 25px;}
 #main #table #mima input{border:none;width:270px;}
-#main #table #mima #sp1{}
+#main #table #mima #sp1{font:20px/60px "";}
 #main #table #btn1{width:442px;border:1px solid #999;margin:50px auto;background:red;text-align: center;}
 #main #table #btn1 input{border: none;background:red;font:18px/62px "";color:#fff;}
 #main #table p{height:14px;font-size:14px;color:#666;}
