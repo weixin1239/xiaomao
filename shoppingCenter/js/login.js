@@ -59,11 +59,35 @@ $("psw").onblur = function(){
 		return;
 	}
 };
+//保存cookie（新建cookie）
+//功能：保存cookie
+//参数：
+//key：键
+//value：值
+//dayCount有效期:(单位是天) 如：7天
 
-$("btn1").onclick = function(){
-	if($("user").value && $("psw").value){
-		location.href="index.html";	
-	}else{
-		alert("请完善您的信息");
-	}
+//返回值：
+//无
+function saveCookie(key,value,dayCount){
+	var d = new Date();
+	d.setDate(d.getDate()+dayCount);
+	document.cookie = key+"="+encodeURIComponent(value)+";expires="+d.toGMTString();
 }
+//点击登录，跳转到首页
+jQuery("#btn1").click(function(){
+	jQuery.ajax({
+		url:"login.php",
+		async:true,
+		data:"userName="+jQuery('#user').val()+"&userPass="+jQuery("#psw").val(),
+		type:"post",
+		success:function(data){
+			if(data>="1"){
+				//保存cookie
+				//saveCookie("user",$("#psw").val(),7);
+				location.href="index.html";
+			}else{
+				alert("亲，用户名或者密码错误，登录失败，请想好再输！");
+			}
+		}		
+	});	
+});

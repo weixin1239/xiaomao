@@ -69,20 +69,6 @@ $("toTop").onclick = function(){
 	document.documentElement.scrollTop = document.body.scrollTop = 0;
 };
 
-
-	/*var a = document.getElementsByClassName("a1");
-	
-	for(var i=0;i<a.length;i++){
-		var liWidth = a[i].parentNode.offsetWidth;
-			console.log(liWidth);
-		//var a1 = a[i].parentNode;
-		a[i].onmouseover = function(){
-			
-			let line = $create("div");
-			line.style.cssText = "position:absolute;width"+liWidth+"px;height:3px;border-bottom:3px solid red;";
-			this.appendChild(line);
-		}
-	}*/
 	
 	//导航出现红杠
 	var ul = document.getElementById("lineul");
