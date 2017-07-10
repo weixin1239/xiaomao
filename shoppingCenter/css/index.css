@@ -72,7 +72,7 @@ nav .nav_r .search span{float:right;height:26px;width:26px;background-color:#e4e
 #banner .menu li .menu1 .innerli a dl dt img{float:left;height:120px;width:120px;}
 #banner .menu li .menu1 .innerli a dl dd{float:left;}
 #banner .menu li .menu1 .innerli a dl dd p{font:14px/46px "";color:#555;margin-top: 15px;margin-left: 20px;vertical-align: middle;}
-#banner .menu li .menu1 .innerli a dl dd button{width: 98px;height: 28px;border: 1px solid #f30;text-align: center;line-height: 28px;color: #f30;cursor: pointer;margin-left:20px;margin-top:10px;}
+#banner .menu li .menu1 .innerli a dl dd button{width: 98px;height: 28px;background: #fff;border: 1px solid #f30;text-align: center;line-height: 28px;color: #f30;cursor: pointer;margin-left:20px;margin-top:10px;}
 
 
 #content{background-color:#f2f2f2;padding:50px;}

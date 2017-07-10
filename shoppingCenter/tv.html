@@ -324,29 +324,29 @@
 			<div class="margin1 clear">
 				<div class="introduction_l">
 					<div class="bigImg" id="box2">
-						<p><img src="img/goods1.jpg"/></p>
-						<p><img src="img/tv1.jpg"/></p>
-						<p><img src="img/tv5.jpg"/></p>
-						<p><img src="img/tv3.jpg"/></p>
-						<p><img src="img/tv4.jpg"/></p>
+						<p><img class="p11" src="img/goods1.jpg"/></p>
+						<p><img class="p2" src="img/tv1.jpg"/></p>
+						<p><img class="p3" src="img/tv5.jpg"/></p>
+						<p><img class="p4" src="img/tv3.jpg"/></p>
+						<p><img class="p5" src="img/tv4.jpg"/></p>
 					</div>
 					<ul class="smallImgs" id="smallImgsId">
-						<li class="active"><img src="img/goods1.jpg"/></li>
-						<li><img src="img/tv1.jpg"/></li>
-						<li><img src="img/tv5.jpg"/></li>
-						<li><img src="img/tv3.jpg"/></li>
-						<li><img src="img/tv4.jpg"/></li>
+						<li class="active"><img class="p1" src="img/goods1.jpg"/></li>
+						<li><img class="p2" src="img/tv1.jpg"/></li>
+						<li><img class="p3" src="img/tv5.jpg"/></li>
+						<li><img class="p4" src="img/tv3.jpg"/></li>
+						<li><img class="p5" src="img/tv4.jpg"/></li>
 					</ul>
 				</div>
 				<div class="introduction_r">
 					<div class="r1">
-						<h3>纤薄曲面 高端巨幕影院 65</h3>
-						<span>65A880C/独立前置音响/10mm金属窄边框/人工智能</span>
-						<a href="#"><img src="img/star.png"/>收藏</a>
-						<p>可获取积分：7299</p>
+						<h3 class="goodsN">纤薄曲面 高端巨幕影院 65</h3>
+						<p class="pT"><a href="#" class="redT">【7月1-4日抢购价3599元】</a><h7 class="p">TCL 55A660U金属机身,底座/航空铝材边框/4K+HDR/HDR/蓝牙4.0/55寸</h7><p>
+						<div class="collect"><a href="#"><img src="img/star.png"/>收藏</a></div>
+						<span class="jifen">可获取积分：7299</span>
 					</div>
 					<div class="r2">
-						<p>促销价：<span>7299.00元</span></p>
+						<p>促销价：<span class="b">7299.00元</span></p>
 						<s>原价：7999.00元</s>
 						<p class="sCode">
 							<img src="img/sCode.png"/>手机购买
@@ -679,7 +679,45 @@
 			</div>
 		</div>
 <script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
-<script type="text/javascript" src="js/tv.js"/></script>
+<script type="text/javascript" src="js/tv.js"></script>
+<script type="text/javascript" src="js/cookieTools.js" ></script>
+<script type="text/javascript">
+		//自动获取详情页
+	let goodsId=getCookie("number");
+	jQuery.ajax({
+		type:"get",
+		url:"php/getGoodsInfo.php",
+		async:true,
+		data:"goodsId="+goodsId,
+		success:function(data){
+			//console.log(1);
+				let obj=eval('('+data+')');
+				console.log(obj)
+				let goodsPrice=obj.goodsPrice;
+				let goodsName=obj.goodsName;
+				var goodsImg=obj.goodsImg;
+				let goodsDesc=obj.goodsDesc;
+				let beiyong1=obj.beiyong1;
+				let beiyong2=obj.beiyong2;
+				let beiyong3=obj.beiyong3;
+				let beiyong4=obj.beiyong4;
+				let beiyong5=obj.beiyong5;
+				let beiyong6=obj.beiyong6;
+				let beiyong7=obj.beiyong7;
+				jQuery(".goodsN").html(goodsName);
+				jQuery(".redT").html(goodsDesc);
+				jQuery(".p").html(beiyong1);
+				jQuery(".b").html(goodsPrice);
+				jQuery(".jifen").html("可获取积分："+goodsPrice);
+				jQuery(".p11").attr({src:goodsImg});
+				jQuery(".p1").attr({src:beiyong3});
+				jQuery(".p2").attr({src:beiyong4});
+				jQuery(".p3").attr({src:beiyong5});
+				jQuery(".p4").attr({src:beiyong6});
+				jQuery(".p5").attr({src:beiyong7});
+		}  
+	});
+</script>
 	</body>
 </html>
 

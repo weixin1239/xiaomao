@@ -41,7 +41,7 @@ nav .nav_r p{float:left;margin-left:38px;}
 nav .nav_r p a{color:#555555;}
 nav .nav_r .search{float:left;margin-left:20px;border:1px solid #cccccc;width:215px;height:28px;margin-top:15px;font:12px/28px "";}
 nav .nav_r .search input{float:left;border:none;padding-left:16px;font:12px/28px "";}
-nav .nav_r .search span{float:right;height:26px;width:26px;background-color:#e4e4e4;background-color: #e4e4e4;display: block;text-align: center;line-height: 26px;border-radius: 50%;margin:2px 8px 0 0;}
+nav .nav_r .search span{float:right;height:26px;width:26px;background-color:#e4e4e4;display: block;text-align: center;line-height: 26px;border-radius: 50%;margin:2px 8px 0 0;}
 
 #banner{height:550px;position:relative;}
 #box{width: 100%;height: 550px;overflow: hidden;position: relative;}
@@ -72,7 +72,7 @@ nav .nav_r .search span{float:right;height:26px;width:26px;background-color:#e4e
 #banner .menu li .menu1 .innerli a dl dt img{float:left;height:120px;width:120px;}
 #banner .menu li .menu1 .innerli a dl dd{float:left;}
 #banner .menu li .menu1 .innerli a dl dd p{font:14px/46px "";color:#555;margin-top: 15px;margin-left: 20px;vertical-align: middle;}
-#banner .menu li .menu1 .innerli a dl dd button{width: 98px;height: 28px;border: 1px solid #f30;text-align: center;line-height: 28px;color: #f30;cursor: pointer;margin-left:20px;margin-top:10px;}
+#banner .menu li .menu1 .innerli a dl dd button{width: 98px;height: 28px;background:#fff;border: 1px solid #f30;text-align: center;line-height: 28px;color: #f30;cursor: pointer;margin-left:20px;margin-top:10px;}
 
 #navS{background:#f0f0f0;padding-top:20px;}
 #navS #navS1{background:#fff;font:14px/38px "";color:#666;padding:25px 0;}
@@ -98,9 +98,9 @@ nav .nav_r .search span{float:right;height:26px;width:26px;background-color:#e4e
 #main #mains li .redT,.price{color:red;}
 #main #mains li .price{margin-top:15px;font-weight:700;}
 #main #mains li span{display:inline-block;width:146px;height:38px;border:1px solid red;font-size: 12px;line-height:38px;text-align:center;margin:15px auto 34px;}
-#main #mains li span a{color:red;}
-#main #mains li .change{background:red;color:#fff;}
-#main #mains li .change a{color:#fff;}
+#main #mains li span a{display:inline-block;width:100%;height:100%;color:red;}
+#main #mains li span:hover{background:red;color:#fff;}
+#main #mains li span:hover a{color:#fff;}
 #main #mains li .border_t{position:absolute;width:0px;height:1px;background:red;left:0;top:0px;}
 #main #mains li .border_r{position:absolute;width:1px;height:0px;background:red;right:0;bottom:0;}
 #main #mains li .border_b{position:absolute;width:0px;height:1px;background:red;right:0px;bottom:0;}

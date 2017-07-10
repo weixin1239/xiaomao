@@ -42,15 +42,16 @@
 			<div id="table">
 				<div id="username">
 					<span><img src="img/person.png" /> </span>
-					<input id="user" type="text" placeholder="邮箱/手机号码/TCL账号"/>
+					<input id="user" type="text" placeholder="邮箱/手机号码/TCL账号" required="required"/>
 				</div>
 				<i id="mail1"></i>
 				<div id="mima">
 					<span><img src="img/lock.png"/></span>
-					<input id="psw" type="password" placeholder="密码"/>
+					<input id="psw" type="text" placeholder="密码" required="required"/>
 				</div>
 				<i id="psw1"></i>
 				<div id="btn1" ><input type="button" value="立即登录"/></div>
+				<i id="warn1"></i>
 				<div class="main3">
 					<a href="#">注册TCL账号</a>
 					<span>|</span>
@@ -103,4 +104,5 @@
 		</aside>
 	</body>
 </html>
+<script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
 <script type="text/javascript" src="js/login.js"/></script>

@@ -39,13 +39,12 @@ $("toTop").onclick = function(){
 
 $("user").onblur = function(){
 	let str = $("user").value;
-	let reg = /^\w+@\w(\.\w+)+$/;
+	let reg = /^\w+@\w+(\.\w+)+$/;
 	let reg1 = /^1\d{10}$/;
 	if((reg.test(str)) || (reg1.test(str))){
-		
+		$("mail1").innerHTML ="";
 	}else{
 		$("mail1").innerHTML = "您好，请检查您的邮箱号或手机号格式是否正确";
-		return;
 	}
 };
 
@@ -53,41 +52,79 @@ $("user").onblur = function(){
 $("psw").onblur = function(){
 	let str1 = $("psw").value;
 	if(str1.length>0){
-		
+		$("psw1").innerHTML ="";
 	}else{
 		$("psw1").innerHTML = "密码不能为空";
-		return;
 	}
 };
-//保存cookie（新建cookie）
-//功能：保存cookie
+//1、保存cookie
 //参数：
-//key：键
-//value：值
-//dayCount有效期:(单位是天) 如：7天
+//键：
+//值：
+//有效期：
 
-//返回值：
-//无
 function saveCookie(key,value,dayCount){
 	var d = new Date();
 	d.setDate(d.getDate()+dayCount);
-	document.cookie = key+"="+encodeURIComponent(value)+";expires="+d.toGMTString();
+	document.cookie = key+"="+encodeURIComponent(value)+";expires="+d.toGMTString();	
+
+}
+
+
+//2、读取cookie
+//参数：
+//键
+//返回值：值；  ""：表示没有找到对应的cookie；
+
+//cssfile=red; aauserName=ttt; userName=jzm
+function getCookie(key){	
+	var str = decodeURIComponent(document.cookie);
+	//1、转换成数组
+	var arr = str.split("; ");
+	//2、根据键找到对应的数组元素
+	var index=-1;
+	for(var i=0;i<arr.length;i++){
+		if(arr[i].indexOf(key+"=")==0){
+			index = i;
+			break;
+		}
+	}
+	//3、截取出值
+	if(index==-1){
+		return "";
+	}else{
+		return arr[index].substring(key.length+1);
+	}
+}
+
+//3、删除cookie
+//参数：
+//键；
+function removeCookie(key){
+	saveCookie(key,"",-1);
 }
 //点击登录，跳转到首页
 jQuery("#btn1").click(function(){
-	jQuery.ajax({
-		url:"login.php",
-		async:true,
-		data:"userName="+jQuery('#user').val()+"&userPass="+jQuery("#psw").val(),
-		type:"post",
-		success:function(data){
-			if(data>="1"){
-				//保存cookie
-				//saveCookie("user",$("#psw").val(),7);
-				location.href="index.html";
-			}else{
-				alert("亲，用户名或者密码错误，登录失败，请想好再输！");
-			}
-		}		
-	});	
+	if($("user").value.length<=0 && $("psw").value.length<=0){
+		$("warn1").innerHTML = "用户名和密码均不能为空";
+	}else{
+		jQuery.ajax({
+			url:"php/login.php",
+			async:true,
+			data:"userName="+jQuery('#user').val()+"&userPass="+jQuery("#psw").val(),
+			type:"post",
+			success:function(data){
+				console.log(data)
+				if(data=="1"){
+					//保存cookie
+					saveCookie("userName",jQuery("#user").val(),7);
+					saveCookie("userPass",jQuery("#psw").val(),7);
+					location.href="index.html";
+				}else{
+					$("warn1").innerHTML = "亲，用户名或者密码错误，登录失败，请想好再输！";
+				}
+			}		
+		});	
+	}
 });
+
