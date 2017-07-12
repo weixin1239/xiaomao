@@ -25,24 +25,33 @@
 	//2、数据保存在数据库中
 	//1）、建立连接（搭桥）
 	$conn = mysql_connect("localhost","root","root");
+	if(!$conn){
+		die("数据库连接失败：".mysql_error());
+	}
 	
 	//2）、选择数据库（找目的地）
-	mysql_select_db("dbweixin",$conn);
+	if(!mysql_select_db("dbweixin",$conn)){
+		die("数据库选择失败".mysql_error());
+	};
 	
 	//3）、传输数据（过桥）
-	//insert语句
-	$sqlstr = "insert into goodsInfo values('".$goodsId."','".$goodsName."','".$goodsType."'
+	$sqlstr = "insert into goodsInfo1 values('".$goodsId."','".$goodsName."','".$goodsType."'
 	,'".$goodsPrice."','".$goodsCount."','".$goodsDesc."','".$goodsImg."'
 	,'".$beiyong1."','".$beiyong2."','".$beiyong3."','".$beiyong4."'
 	,'".$beiyong5."','".$beiyong6."','".$beiyong7."','".$beiyong8."'
 	,'".$beiyong9."','".$beiyong10."','".$beiyong11."','".$beiyong12."','".$beiyong13."')";
-	//echo($sqlstr);
 	
-	mysql_query($sqlstr,$conn);
-	
+
+	$count = mysql_query($sqlstr,$conn);
+	if(!$count){
+		die('插入失败！'.mysql_error());
+	}
 	//4）、关闭连接（拆桥）
 	mysql_close($conn);
 	
 	//3、给客户端返回（响应）一个注册成功！
-	echo "保存成功";
+	if($count>0){
+	    echo "保存成功";
+	}
+	
 ?>

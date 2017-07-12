@@ -24,11 +24,26 @@
 					</li>
 				</ul>
 				<div class="header_r clear">
-					<p><a href="shoppingCar.html">购物车</a></p>
+					<p class="header_r_l"><a href="shoppingCar.html">购物车</a></p>
 					<span>|</span>
-					<p><a href="register.html">注册</a></p>
+					<p class="header_r_c"><a id="zhuce" href="register.html">注册</a></p>
 					<span>|</span>
-					<p><a href="login.html">登录</a></p>
+					<div class="sittings">
+						<a id="denglu" href="login.html">登录</a>
+						<div class="hideSittings">
+							<p class="youhui clear">
+								<i>积分</i>
+								<span>500</span>
+								<i>优惠券</i>
+								<span>0</span>
+							</p>
+							<a href="#">个人中心</a>
+							<a href="#">我的收藏</a>
+							<a href="#">账号管理</a>
+							<a href="#">评价管理</a>
+							<a class="tuiChu">退出登录</a>
+						</div>
+					</div>
 				</div>
 			</div>
 		</header>
@@ -323,8 +338,8 @@
 		<section id="introduction">
 			<div class="margin1 clear">
 				<div class="introduction_l">
-					<div class="bigImg" id="box2">
-						<p><img class="p11" src="img/goods1.jpg"/></p>
+					<!--<div class="bigImg" id="box2">
+						<p><img class="p1" src="img/goods1.jpg"/></p>
 						<p><img class="p2" src="img/tv1.jpg"/></p>
 						<p><img class="p3" src="img/tv5.jpg"/></p>
 						<p><img class="p4" src="img/tv3.jpg"/></p>
@@ -336,10 +351,10 @@
 						<li><img class="p3" src="img/tv5.jpg"/></li>
 						<li><img class="p4" src="img/tv3.jpg"/></li>
 						<li><img class="p5" src="img/tv4.jpg"/></li>
-					</ul>
+					</ul>-->
 				</div>
 				<div class="introduction_r">
-					<div class="r1">
+					<!--<div class="r1">
 						<h3 class="goodsN">纤薄曲面 高端巨幕影院 65</h3>
 						<p class="pT"><a href="#" class="redT">【7月1-4日抢购价3599元】</a><h7 class="p">TCL 55A660U金属机身,底座/航空铝材边框/4K+HDR/HDR/蓝牙4.0/55寸</h7><p>
 						<div class="collect"><a href="#"><img src="img/star.png"/>收藏</a></div>
@@ -355,7 +370,7 @@
 					</div>
 					<div class="r3">
 						<p>选择屏幕尺寸</p>
-						<span>65英寸</span>
+						<span class="size">65英寸</span>
 					</div>
 					<div class="r4 clear">
 						<div class="r4_l clear">
@@ -366,9 +381,9 @@
 							</div>
 						</div>
 						<div class="r4_r">
-							<a href="#"><input type="button" value="立即购买"/></a>
+							<div id="buy" ><input type="button" value="立即购买"/></div>
 						</div>
-					</div>
+					</div>-->
 					<div class="r5">
 						<p>配送到： 请选择省 安庆市 枞阳县 县城内 有货</p>
 						<div class="address">
@@ -690,33 +705,64 @@
 		async:true,
 		data:"goodsId="+goodsId,
 		success:function(data){
-			//console.log(1);
-				let obj=eval('('+data+')');
-				console.log(obj)
-				let goodsPrice=obj.goodsPrice;
-				let goodsName=obj.goodsName;
-				var goodsImg=obj.goodsImg;
-				let goodsDesc=obj.goodsDesc;
-				let beiyong1=obj.beiyong1;
-				let beiyong2=obj.beiyong2;
-				let beiyong3=obj.beiyong3;
-				let beiyong4=obj.beiyong4;
-				let beiyong5=obj.beiyong5;
-				let beiyong6=obj.beiyong6;
-				let beiyong7=obj.beiyong7;
-				jQuery(".goodsN").html(goodsName);
-				jQuery(".redT").html(goodsDesc);
-				jQuery(".p").html(beiyong1);
-				jQuery(".b").html(goodsPrice);
-				jQuery(".jifen").html("可获取积分："+goodsPrice);
-				jQuery(".p11").attr({src:goodsImg});
-				jQuery(".p1").attr({src:beiyong3});
-				jQuery(".p2").attr({src:beiyong4});
-				jQuery(".p3").attr({src:beiyong5});
-				jQuery(".p4").attr({src:beiyong6});
-				jQuery(".p5").attr({src:beiyong7});
-		}  
+			//console.log(data);
+			let obj=eval('('+data+')');
+			//console.log(obj)
+
+			var str1 = "<div class='bigImg' id='box2'><p><img class='p1' src='"+obj.goodsImg+"'/></p><p><img class='p2' src='"+obj.beiyong4+"'/></p><p><img class='p3' src='"+obj.beiyong5+"'/></p><p><img class='p4' src='"+obj.beiyong6+"'/></p><p><img class='p5' src='"+obj.beiyong7+"'/></p></div><ul class='smallImgs' id='smallImgsId'><li class='active'><img class='p1' src='"+obj.goodsImg+"'/></li><li><img class='p2' src='"+obj.beiyong4+"'/></li><li><img class='p3' src='"+obj.beiyong5+"'/></li><li><img class='p4' src='"+obj.beiyong6+"'/></li><li><img class='p5' src='"+obj.beiyong7+"'/></li></ul>";
+			var str2 = "<div class='r1'><h3 class='goodsN'>"+obj.goodsName+"</h3><p class='pT'><a href='#' class='redT'>"+obj.goodsDesc+"</a><h7 class='p'>"+obj.beiyong1+"</h7><p><div class='collect'><a href='#'><img src='img/star.png'/>收藏</a></div><span class='jifen'>可获取积分："+obj.goodsPrice+"</span></div><div class='r2'><p>促销价：<span class='b'>"+obj.goodsPrice+"元</span></p><s>原价：7999.00元</s><p class='sCode'><img src='img/sCode.png'/>手机购买<img class='sCode1' src='img/scode1.png' /> </p></div><div class='r3'><p>选择屏幕尺寸</p><span class='size'>"+obj.beiyong8+"</span></div><div class='r4 clear'><div class='r4_l clear'><b id='num' >1</b><div class='count'><span><input id='jia' type='button' value='∧'/></span><span><input id='jian' type='button' value='∨'/></span></div></div><div class='r4_r'><div id='buy' ><input type='button' value='立即购买'/></div></div></div>";
+			jQuery(".introduction_l").append(str1);
+			jQuery(".r5").before(str2);
+			
+			var result = document.getElementById("num");
+			var jia = document.getElementById("jia");
+			var x = result.innerHTML;
+			jia.onclick = function(){
+				x++;
+				result.innerHTML = x;
+			}
+			var jian = document.getElementById("jian");
+			jian.onclick = function(){
+				if(x>1){
+					x--;
+					result.innerHTML = x;
+				}
+			}
+			
+			//添加到购物车开始
+			jQuery("#buy").click(function(){
+				var userName = getCookie("userName");
+				var goodsId = getCookie("number");
+				var goodsCount = parseInt($("#num").html());
+				if(goodsCount <= 0){
+					alert('请选择商品数量！');
+					return false;
+				}
+				var data = {
+					userName:userName,
+					goodsId:goodsId,
+					goodsCount:goodsCount
+				};
+				$.ajax({
+					url:"php/addShoppingCart.php",
+					type:"get",
+					data:data,
+					success:function(data){
+						console.log(data);
+						if(data == 1){
+							console.log('添加购物车成功！');
+							location.href="shoppingCar.html";
+						}else{
+							console.log('添加购物车失败！');
+						}
+					}
+				});
+			})
+			//添加到购物车结束
+		}
 	});
+	
+	
 </script>
 	</body>
 </html>

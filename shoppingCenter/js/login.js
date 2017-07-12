@@ -37,16 +37,16 @@ $("toTop").onclick = function(){
 };
 
 
-$("user").onblur = function(){
-	let str = $("user").value;
-	let reg = /^\w+@\w+(\.\w+)+$/;
-	let reg1 = /^1\d{10}$/;
-	if((reg.test(str)) || (reg1.test(str))){
-		$("mail1").innerHTML ="";
-	}else{
-		$("mail1").innerHTML = "您好，请检查您的邮箱号或手机号格式是否正确";
-	}
-};
+//$("user").onblur = function(){
+//	let str = $("user").value;
+//	let reg = /^\w+@\w+(\.\w+)+$/;
+//	let reg1 = /^1\d{10}$/;
+//	if((reg.test(str)) || (reg1.test(str))){
+//		$("mail1").innerHTML ="";
+//	}else{
+//		$("mail1").innerHTML = "您好，请检查您的邮箱号或手机号格式是否正确";
+//	}
+//};
 
 
 $("psw").onblur = function(){
@@ -57,51 +57,25 @@ $("psw").onblur = function(){
 		$("psw1").innerHTML = "密码不能为空";
 	}
 };
-//1、保存cookie
-//参数：
-//键：
-//值：
-//有效期：
-
-function saveCookie(key,value,dayCount){
-	var d = new Date();
-	d.setDate(d.getDate()+dayCount);
-	document.cookie = key+"="+encodeURIComponent(value)+";expires="+d.toGMTString();	
+function saveCookie(name,value,d)//两个参数，一个是cookie的名子，一个是值
+{
+	var Days = d; //此 cookie 将被保存 30 天
+	var exp = new Date(); //new Date("December 31, 9998");
+	exp.setTime(exp.getTime() + Days*24*60*60*1000);
+	document.cookie = name + "="+ escape (value) + ";expires=" + exp.toGMTString();
+}
+function getCookie(name)//取cookies函数
+{
+	var arr = document.cookie.match(new RegExp("(^| )"+name+"=([^;]*)(;|$)"));
+	if(arr != null) return unescape(arr[2]); return null;
 
 }
-
-
-//2、读取cookie
-//参数：
-//键
-//返回值：值；  ""：表示没有找到对应的cookie；
-
-//cssfile=red; aauserName=ttt; userName=jzm
-function getCookie(key){	
-	var str = decodeURIComponent(document.cookie);
-	//1、转换成数组
-	var arr = str.split("; ");
-	//2、根据键找到对应的数组元素
-	var index=-1;
-	for(var i=0;i<arr.length;i++){
-		if(arr[i].indexOf(key+"=")==0){
-			index = i;
-			break;
-		}
-	}
-	//3、截取出值
-	if(index==-1){
-		return "";
-	}else{
-		return arr[index].substring(key.length+1);
-	}
-}
-
-//3、删除cookie
-//参数：
-//键；
-function removeCookie(key){
-	saveCookie(key,"",-1);
+function delCookie(name)//删除cookie
+{
+	var exp = new Date();
+	exp.setTime(exp.getTime() - 1);
+	var cval=getCookie(name);
+	if(cval!=null) document.cookie= name + "="+cval+";expires="+exp.toGMTString();
 }
 //点击登录，跳转到首页
 jQuery("#btn1").click(function(){

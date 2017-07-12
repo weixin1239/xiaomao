@@ -1145,7 +1145,7 @@
 			async:true,
 			success:function(data){
 				var obj=eval(data);
-				for(var i=0;i<12;i++){
+				for(var i=0;i<obj.length;i++){
 					let goodsId=obj[i].goodsId;
 					let goodsName=obj[i].goodsName;
 					let goodsPrice=obj[i].goodsPrice;
@@ -1163,20 +1163,37 @@
 				jQuery(".mains").append(str);
 				}
 				//自动跳转到商品详情页
-				var liGoods = document.getElementById("mains").getElementsByTagName("li");
-				var number;
-				for(var k=0;k<liGoods.length;k++){
-					(function(k){
-						liGoods[k].onclick = function(){
-							number = liGoods[k].getAttribute("ord");
-							saveCookie("number",number,7);
-							location.href="tv.html";
-						}
-					})(k);
-				}
+//				var liGoods = document.getElementById("mains").getElementsByTagName("li");
+//				var number;
+//				for(var k=0;k<liGoods.length;k++){
+//					(function(k){
+//						liGoods[k].onclick = function(){
+//							number = liGoods[k].getAttribute("ord");
+//							saveCookie("number",number,7);
+//							location.href="tv.html";
+//						}
+//					})(k);
+//				}
+				jQuery("#mains li").on("click",function(){
+					let number=jQuery(this).attr("ord");
+					saveCookie("number",number,7);
+					window.location.href="tv.html";				
+				});
+				
 			}
 			
 			
 		});
 	})
+	
+	jQuery(function(){
+	var strN =  getCookie("userName");   
+	if(strN==""){
+		jQuery("#denglu").text("亲，请登录");
+		jQuery("#zhuce").text("注册");
+	}else{
+		jQuery("#denglu").text(strN+"，欢迎您！");
+		jQuery("#zhuce").text("我的订单");
+	}
+});
 </script>

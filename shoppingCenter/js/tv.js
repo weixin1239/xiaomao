@@ -64,6 +64,8 @@ window.onscroll = function () {
 */
 
 };
+
+
 //红色花括号
 var red= document.getElementById("red");
 var scrollHeight = document.documentElement.scrollHeight || document.body.scrollHeight;
@@ -146,20 +148,7 @@ function xuan(data){
   		}
 	}
 
-var result = document.getElementById("num");
-var jia = document.getElementById("jia");
-var x = result.innerHTML;
-jia.onclick = function(){
-	x++;
-	result.innerHTML = x;
-}
-var jian = document.getElementById("jian");
-jian.onclick = function(){
-	if(x>1){
-		x--;
-		result.innerHTML = x;
-	}
-}
+
 
 
 //省市联动
@@ -262,49 +251,54 @@ window.onload=function(){
 	}
 }
 
-//1、保存cookie
-//参数：
-//键：
-//值：
-//有效期：
-
-function saveCookie(key,value,dayCount){
-	var d = new Date();
-	d.setDate(d.getDate()+dayCount);
-	document.cookie = key+"="+encodeURIComponent(value)+";expires="+d.toGMTString();	
+function saveCookie(name,value,d)//两个参数，一个是cookie的名子，一个是值
+{
+	var Days = d; //此 cookie 将被保存 30 天
+	var exp = new Date(); //new Date("December 31, 9998");
+	exp.setTime(exp.getTime() + Days*24*60*60*1000);
+	document.cookie = name + "="+ escape (value) + ";expires=" + exp.toGMTString();
+}
+function getCookie(name)//取cookies函数
+{
+	var arr = document.cookie.match(new RegExp("(^| )"+name+"=([^;]*)(;|$)"));
+	if(arr != null) return unescape(arr[2]); return null;
 
 }
+function delCookie(name)//删除cookie
+{
+	var exp = new Date();
+	exp.setTime(exp.getTime() - 1);
+	var cval=getCookie(name);
+	if(cval!=null) document.cookie= name + "="+cval+";expires="+exp.toGMTString();
+}
 
-
-//2、读取cookie
-//参数：
-//键
-//返回值：值；  ""：表示没有找到对应的cookie；
-
-//cssfile=red; aauserName=ttt; userName=jzm
-function getCookie(key){	
-	var str = decodeURIComponent(document.cookie);
-	//1、转换成数组
-	var arr = str.split("; ");
-	//2、根据键找到对应的数组元素
-	var index=-1;
-	for(var i=0;i<arr.length;i++){
-		if(arr[i].indexOf(key+"=")==0){
-			index = i;
-			break;
-		}
-	}
-	//3、截取出值
-	if(index==-1){
-		return "";
+jQuery(function(){
+	var strN =  getCookie("userName");  
+	console.log(strN)
+	if(strN==""){
+		jQuery("#denglu").text("登录");
+		jQuery("#zhuce").text("注册");
 	}else{
-		return arr[index].substring(key.length+1);
+		jQuery("#denglu").text(strN+"，TCL欢迎您！");
+		jQuery("#zhuce").text("我的订单");
+		jQuery(".sittings").hover(
+			function () {
+		    	jQuery(".hideSittings").show();
+			},
+			function () {
+		    	jQuery(".hideSittings").hide();
+			}
+		);
 	}
-}
+	
+	jQuery(".tuiChu").click(function(){
+		location.href = "login.html";
+		delCookie("userName");
+		if(strN!=""){
+			jQuery("#denglu").text("登录");
+			jQuery("#zhuce").text("注册");
+		}
+	})
+});
 
-//3、删除cookie
-//参数：
-//键；
-function removeCookie(key){
-	saveCookie(key,"",-1);
-}
+

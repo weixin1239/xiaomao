@@ -14,13 +14,19 @@ gulp.task("copy-js",function(){
 	gulp.src("js/*.js")
 	.pipe(gulp.dest("D:/phpStudy/WWW/xiaomao/shoppingCenter/js"));
 })
+//gulp.task("copy-php",function(){
+//	gulp.src("*.php")
+//	.pipe(gulp.dest("D:/phpStudy/WWW/xiaomao/shoppingCenter/php"));
+//});
 gulp.task("copy-php",function(){
-	gulp.src("php/*.php").pipe(gulp.dest("D:/phpStudy/WWW/xiaomao/shoppingCenter/php"));
+	gulp.src("php/**/*")
+	.pipe(gulp.dest("D:/phpStudy/WWW/xiaomao/shoppingCenter/php"));
 });
 gulp.task("watch",function(){
 	gulp.watch("*.html",["copy-index"]);
 	gulp.watch("img/*",["copy-images"]);
 	gulp.watch("js/*.js",["copy-js"]);
 	gulp.watch("css/*.css",["copy-css"]);
-	gulp.watch("*.php",["copy-php"]);
+//	gulp.watch("*.php",["copy-php"]);
+	gulp.watch("php/**/*",["copy-php"]);
 });

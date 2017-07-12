@@ -158,7 +158,7 @@ $("btn1").onclick = function(){
 						jQuery.ajax({
 						url:"php/regSave.php",
 						async:true,
-						data:"username="+$("mail").value+"; &userPass="+$("pass").value,
+						data:"username="+$("mail").value+"&userPass="+$("pass").value,
 						type:"post",
 						success:function(data){
 									//console.log(data+$("mail").value)

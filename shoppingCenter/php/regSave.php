@@ -3,7 +3,7 @@
 	//1.接受客户端的输入数据
 	$name = $_POST['username'];
 	$mima = $_POST['userPass'];
-	
+
 	//2.保存到数据库
 		//1)连接到数据库
 	$con = mysql_connect("localhost","root","root");
@@ -15,6 +15,7 @@
 		//2)执行SQL语句
 		mysql_select_db("dbweixin",$con);
 		$str="insert into userTable(userName,userPass) values('".$name."','".$mima."')";
+		//echo $str;
 		$count = mysql_query($str,$con);
 		
 		//3）关闭数据库
@@ -29,5 +30,5 @@
 		}else{
 			echo "0";
 		}
-	}
+    }
 ?>

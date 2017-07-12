@@ -7,24 +7,25 @@
 	
 	//2、数据保存在数据库中
 	//1）、建立连接（搭桥）
-	$conn = mysql_connect("localhost","root","qianfeng");
+	$conn = mysql_connect("localhost","root","root");
 	
 	//2）、选择数据库（找目的地）
-	mysql_select_db("shoppingcenter",$conn);
+	if(!mysql_select_db("dbweixin",$conn)){
+		die("数据库选择失败".mysql_error());
+	}
 	
 	//3）、传输数据（过桥）
-	//insert语句
 	$sqlstr = "update shoppingCart set goodsCount='".$goodsCount."' where vipName='".$vipName."' and goodsId='".$goodsId."'";
 	//echo($sqlstr);
 	
-	$result=true;
 	if(!mysql_query($sqlstr,$conn)){
-		$result=false;
+		die("执行更新SQL语句失败".mysql_error());
+		echo "0";
 	}
 	
 	//4）、关闭连接（拆桥）
 	mysql_close($conn);
 	
 	//3、给客户端返回（响应）一个注册成功！
-	echo $result;
+	echo 1; //1：表示修改成功,0：表示修改失败
 ?>

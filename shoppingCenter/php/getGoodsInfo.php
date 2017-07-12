@@ -7,12 +7,16 @@
 	$conn = mysql_connect("localhost","root","root");
 	
 	//2）、选择数据库（找目的地）
-	mysql_select_db("dbweixin",$conn);
+	if(!mysql_select_db("dbweixin",$conn)){
+		die("数据库选择失败".mysql_error());
+	}
 	
 	//3）、传输数据（过桥）
 	$sqlstr = "select * from goodsInfo where goodsId='".$goodsId."'";
 	$result = mysql_query($sqlstr,$conn);//执行查询的sql语句后，有返回值，返回的是查询结果
-			
+	if(!$result){
+		die("获取数据失败".mysql_error());
+	}		
 	//查询列数
 	 $query_cols = mysql_num_fields($result);
 	 //echo "列数：".$query_cols;

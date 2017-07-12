@@ -145,8 +145,28 @@ function removeCookie(key){
 jQuery(function(){
 	var strN =  getCookie("userName");   
 	if(strN==""){
-		jQuery("#denglu").text("亲，请登陆");
+		jQuery("#denglu").text("登录");
+		jQuery("#zhuce").text("注册");
 	}else{
-		jQuery("#denglu").text(strN+"，欢迎您！");
+		jQuery("#denglu").text(strN+"，TCL欢迎您！");
+		jQuery("#zhuce").text("我的订单");
+		jQuery(".sittings").hover(
+			function () {
+		    	jQuery(".hideSittings").show();
+			},
+			function () {
+		    	jQuery(".hideSittings").hide();
+			}
+		);
 	}
+	
+	jQuery(".tuiChu").click(function(){
+		location.href = "login.html";
+		removeCookie("userName");
+		if(strN!=""){
+			jQuery("#denglu").text("登录");
+			jQuery("#zhuce").text("注册");
+		}
+	})
 });
+

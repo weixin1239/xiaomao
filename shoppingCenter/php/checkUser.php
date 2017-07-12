@@ -1,26 +1,27 @@
 <?php
-	header("Content-type: text/html; charset=utf-8");
-	//1.接受客户端的输入数据
-	$name = $_POST['username'];
+	header("content-type","text/html;charset=utf-8");
 	
-	//2.保存到数据库
-		//1)连接到数据库
-	$con = mysql_connect("localhost","root","root");
+	//1接收数据
+	$userId = $_GET["userId"];
+	//$userId = "baobao1";
+	//2、在数据库中查询
+	   //1)、建立连接，并选择数据库
+	   $con = mysql_connect("localhost","root","root");
+	   mysql_select_db("dbweixin",$con);
+	   //2)、执行SQL语句（查询）
+	   $sqlStr="select * from userTable where userId='".$userId."'";
+	   
+	   $result=mysql_query($sqlStr,$con);
+	   
+	   //3)、关闭连接
+	   mysql_close($con);
+	//3、响应结果
+	//获得$result的行数
+	$rows = mysql_num_rows($result);
 		
-	if(!$con){
-		
-		echo "注册失败：服务器连接有问题".mysql.error();
-	}else{
-		//2)执行SQL语句
-		mysql_select_db("dbweixin",$con);
-		$str="select * from userTable where userName='".$name."'";
-		$result = mysql_query($str,$con);
-		$rowCount = mysql_num_rows($result);
-		//3）关闭数据库
-		mysql_close($con);
-				
-	
-	//3.响应(根据查询结果给前段响应对应的（1：用户名已经被使用；0：用户名没有注册）)
-		echo $rowCount;
-	}
+	if($rows>0){//如果用户名存在，返回0；
+		echo "0";	
+	}else {//如果用户名不存在，返回1.
+		echo "1";
+	}	
 ?>

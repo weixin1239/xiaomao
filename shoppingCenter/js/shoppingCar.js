@@ -15,18 +15,18 @@ $("#toTop").click(function(){
 })
 
 
-var result = document.getElementById("num");
-var jia = document.getElementById("jia");
-var x = result.value;
-
-jia.onclick = function(){
-	x++;
-	result.value = x;
-}
-var jian = document.getElementById("jian");
-jian.onclick = function(){
-	if(x>1){
-		x--;
-		result.value = x;
-	}
-}
+//var result = document.getElementById("num");
+//var jia = document.getElementById("jia");
+//var x = result.value;
+//
+//jia.onclick = function(){
+//	x++;
+//	result.value = x;
+//}
+//var jian = document.getElementById("jian");
+//jian.onclick = function(){
+//	if(x>1){
+//		x--;
+//		result.value = x;
+//	}
+//}

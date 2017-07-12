@@ -11,11 +11,21 @@ header{height:40px;background-color:#666666;font:12px/40px "";color:#cccccc;}
 .header_l li:last-child:hover .code{display:block;}
 
 .header_r{float:right;height:40px;}
-.header_r p{float:left;}
-.header_r p a{color:#CCCCCC;}
-.header_r p a:hover{color:#fff;}
+.header_r .header_r_l{float:left;}
+.header_r .header_r_c{float:left;}
+.header_r .header_r_l a{color:#CCCCCC;}
+.header_r .header_r_l a:hover{color:#fff;}
+.header_r .header_r_c a{color:#ccc;}
+.header_r .header_r_c a:hover{color:#fff;}
 .header_r span{float:left;margin:0 15px;}
-
+.header_r .sittings{float:left;position:relative;}
+.header_r .sittings #denglu{color:#ccc;}
+.header_r .sittings #denglu:hover{color:#fff;}
+.header_r .hideSittings{display:none;z-index:100;position:absolute;top:40px;right:0px;width:160px;background:#fff;font-size:12px;line-height:20px;color:#666;}
+.header_r .hideSittings .youhui{display:block;padding-left: 28px;margin:15px 0;}
+.header_r .hideSittings span{float:left;display:inline-block;color:red;margin:0 8px;}
+.header_r .hideSittings i{float:left;display: inline-block;}
+.header_r .hideSittings a{display:block;color:#666;text-align:center;margin:10px auto;}
 
 nav{height:60px;font:14px/60px "";color:#333333;/*position:relative;*/}
 nav .nav_l{float:left;}

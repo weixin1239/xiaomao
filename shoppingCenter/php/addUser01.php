@@ -8,12 +8,12 @@
 	
 	//二、保存数据
 	//1、建立连接并选择数据库
-	$con = mysql_connect("localhost","root","qianfeng");
+	$con = mysql_connect("localhost","root","root");
 	if(!$con){
 		//die("连接失败".mysql_error());
 		echo "0";	
 	}	
-	mysql_select_db("shop1701",$con);
+	mysql_select_db("dbweixin",$con);
 	
 	//2、执行SQL语句
 	$sqlStr = "insert into userTable(userId,userPass)
