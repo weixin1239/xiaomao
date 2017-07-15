@@ -696,74 +696,7 @@
 <script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
 <script type="text/javascript" src="js/tv.js"></script>
 <script type="text/javascript" src="js/cookieTools.js" ></script>
-<script type="text/javascript">
-		//自动获取详情页
-	let goodsId=getCookie("number");
-	jQuery.ajax({
-		type:"get",
-		url:"php/getGoodsInfo.php",
-		async:true,
-		data:"goodsId="+goodsId,
-		success:function(data){
-			//console.log(data);
-			let obj=eval('('+data+')');
-			//console.log(obj)
 
-			var str1 = "<div class='bigImg' id='box2'><p><img class='p1' src='"+obj.goodsImg+"'/></p><p><img class='p2' src='"+obj.beiyong4+"'/></p><p><img class='p3' src='"+obj.beiyong5+"'/></p><p><img class='p4' src='"+obj.beiyong6+"'/></p><p><img class='p5' src='"+obj.beiyong7+"'/></p></div><ul class='smallImgs' id='smallImgsId'><li class='active'><img class='p1' src='"+obj.goodsImg+"'/></li><li><img class='p2' src='"+obj.beiyong4+"'/></li><li><img class='p3' src='"+obj.beiyong5+"'/></li><li><img class='p4' src='"+obj.beiyong6+"'/></li><li><img class='p5' src='"+obj.beiyong7+"'/></li></ul>";
-			var str2 = "<div class='r1'><h3 class='goodsN'>"+obj.goodsName+"</h3><p class='pT'><a href='#' class='redT'>"+obj.goodsDesc+"</a><h7 class='p'>"+obj.beiyong1+"</h7><p><div class='collect'><a href='#'><img src='img/star.png'/>收藏</a></div><span class='jifen'>可获取积分："+obj.goodsPrice+"</span></div><div class='r2'><p>促销价：<span class='b'>"+obj.goodsPrice+"元</span></p><s>原价：7999.00元</s><p class='sCode'><img src='img/sCode.png'/>手机购买<img class='sCode1' src='img/scode1.png' /> </p></div><div class='r3'><p>选择屏幕尺寸</p><span class='size'>"+obj.beiyong8+"</span></div><div class='r4 clear'><div class='r4_l clear'><b id='num' >1</b><div class='count'><span><input id='jia' type='button' value='∧'/></span><span><input id='jian' type='button' value='∨'/></span></div></div><div class='r4_r'><div id='buy' ><input type='button' value='立即购买'/></div></div></div>";
-			jQuery(".introduction_l").append(str1);
-			jQuery(".r5").before(str2);
-			
-			var result = document.getElementById("num");
-			var jia = document.getElementById("jia");
-			var x = result.innerHTML;
-			jia.onclick = function(){
-				x++;
-				result.innerHTML = x;
-			}
-			var jian = document.getElementById("jian");
-			jian.onclick = function(){
-				if(x>1){
-					x--;
-					result.innerHTML = x;
-				}
-			}
-			
-			//添加到购物车开始
-			jQuery("#buy").click(function(){
-				var userName = getCookie("userName");
-				var goodsId = getCookie("number");
-				var goodsCount = parseInt($("#num").html());
-				if(goodsCount <= 0){
-					alert('请选择商品数量！');
-					return false;
-				}
-				var data = {
-					userName:userName,
-					goodsId:goodsId,
-					goodsCount:goodsCount
-				};
-				$.ajax({
-					url:"php/addShoppingCart.php",
-					type:"get",
-					data:data,
-					success:function(data){
-						console.log(data);
-						if(data == 1){
-							console.log('添加购物车成功！');
-							location.href="shoppingCar.html";
-						}else{
-							console.log('添加购物车失败！');
-						}
-					}
-				});
-			})
-			//添加到购物车结束
-		}
-	});
-	
-	
-</script>
 	</body>
 </html>
 

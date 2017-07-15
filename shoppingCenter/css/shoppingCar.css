@@ -42,7 +42,7 @@ nav .nav_l img{display:block;margin:8px 117px 0 0;}
 #title .selects input{float:left;margin-top:30px;border:none;width:20px;height:20px;line-height:20px;border:1px solid #999999;background:#fff;margin-right:20px;}
 #title .inf{width:610px;}
 #title .price{width:100px;}
-#title .num{width:176px;}
+#title .num1{width:176px;}
 #title .result{width:140px;}
 #title .deal{width:70px;}
 
@@ -67,7 +67,8 @@ nav .nav_l img{display:block;margin:8px 117px 0 0;}
 #main ul li:nth-child(6) s{color:#808080;text-decoration: line-through;}
 #main ul li:nth-child(7) a{display:inline-block;margin-top:28px;}
 
-#main #main_b{font:14px/122px "";color:#666;border-bottom:1px solid #ccc;}
+/*#main #dingwei{position:relative;}*/
+#main #main_b{/*position:absolute;*/left:0;top:0;font:14px/122px "";color:#666;border-bottom:1px solid #ccc;}
 #main #main_b .main_b_l{float:left;width:100px;}
 #main #main_b .main_b_l a{color:#333;}
 #main #main_b .main_b_r{float:right;}
@@ -77,6 +78,13 @@ nav .nav_l img{display:block;margin:8px 117px 0 0;}
 #main #main_b .main_b_r .colorful span{color:red;font-size:18px;}
 #main #main_b .main_b_r .colorful s{text-decoration: line-through;}
 #main #main_b .main_b_r .p1{float:right;width:230px;height:50px;background:#ccc;font:14px/50px "";color:#fff;text-align:center;margin-top:36px;margin-left:45px;}
+#main #emptyCar{/*position:absolute;*/left:0;top:0;margin:50px 0;}
+#main #emptyCar img{float:left;margin: 0 87px 0 100px;}
+#main #emptyCar .buyBox{float:left;width:50%;margin-top: 120px;font-size: 14px;color: gray;}
+#main #emptyCar span{display:inline-block;width:150px;border: 1px solid red;color: red;font-size: 14px;height: 35px;line-height: 35px;margin-top: 16px;text-align: center;}				
+#main #emptyCar a{display: inline-block;width:100%;height:100%;}
+#main #emptyCar span:hover{background:red;}
+#main #emptyCar span:hover a{color:#fff;}
 
 #help{background:#f0f0f0;}
 #help .margin{padding:30px 0 50px 0;position:relative;}

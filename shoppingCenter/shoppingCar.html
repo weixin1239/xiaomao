@@ -56,10 +56,10 @@
 		
 		<div id="title">
 			<div class="margin clear">
-				<span class="selects"><input type="checkbox" />全选</span>
+				<span class="selects"><input type="checkbox" id="all"/>全选</span>
 				<span class="inf">商品信息</span>
 				<span class="price">单价</span>
-				<span class="num">数量</span>
+				<span class="num1">数量</span>
 				<span class="result">小计</span>
 				<span class="deal">操作</span>
 			</div>
@@ -94,23 +94,34 @@
 						</li>
 					</ul>-->
 				</div>
-				
-				<div id="main_b" class="clear">
-					<div class="main_b_l">
-						<a href="index.html">继续购物>></a>
-					</div>
-					<div class="main_b_r clear">
-						<p>
-							<span>共1件商品 已选择2件</span>
-							<span>合计（不含运费）：</span>
-						</p>
-						<div class="colorful">
-							<span>8398.00元</span>
-							<s>10998元</s>
+				<div id="dingwei">
+					<div id="main_b" class="clear">
+						<div class="main_b_l">
+							<a href="index.html">继续购物>></a>
 						</div>
-						<p class="p1">去结算</p>
+						<div class="main_b_r clear">
+							<p>
+								<span>共<i class="jianShu">0</i>件商品 已选择<s class="checkedJi">0</s>件</span>
+								<span>合计（不含运费）：</span>
+							</p>
+							<div class="colorful">
+								<span class="total">0.00元</span>
+								<s>10998元</s>
+							</div>
+							<p class="p1">去结算</p>
+						</div>
+					</div>
+					
+					<!--空的购物车-->
+					<div id="emptyCar" class="clear">
+						<img src="img/cart_01.jpg" />
+						<div class="buyBox">
+							<p>购物车空空的哦~，去看看心仪的商品吧...</p>
+							<span><a href="index.html">选购商品</a></span>
+						</div>
 					</div>
 				</div>
+				
 			</div>
 		</div>
 		
@@ -217,139 +228,9 @@
 		</aside>
 		
 <script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
-
 <script type="text/javascript" src="js/cookieTools.js" ></script>
-<script type="text/javascript">
-var vipName=getCookie("userName");
-//var goodsId=getCookie("number");
-jQuery(function(){
-	var strN =  getCookie("userName");  
-	console.log(strN)
-	if(strN==""){
-		jQuery("#denglu").text("登录");
-		jQuery("#zhuce").text("注册");
-	}else{
-		jQuery("#denglu").text(strN+"，TCL欢迎您！");
-		jQuery("#zhuce").text("我的订单");
-		jQuery(".sittings").hover(
-			function () {
-		    	jQuery(".hideSittings").show();
-			},
-			function () {
-		    	jQuery(".hideSittings").hide();
-			}
-		);
-	}
-	
-	jQuery(".tuiChu").click(function(){
-		location.href = "login.html";
-		delCookie("userName");
-		if(strN!=""){
-			jQuery("#denglu").text("登录");
-			jQuery("#zhuce").text("注册");
-		}
-	})
-});
-//console.log(vipName)
-jQuery.ajax({	
-	type:"get",
-	data:{'vipName':vipName},
-	url:"php/getShoppingCart.php",
-	async:true,
-	success:function(data){
-//console.log(data);
-		var obj = eval('('+data+')');
-		
-		for(var i=0;i<obj.length;i++){
-			//console.log("s="+obj[i].goodsName);
-			
-			var str = "<ul class='clear' ord='"+obj[i].goodsId+"'><li><input type='checkbox' /></li><li><a href='#'><img id='img' src='"+obj[i].goodsImg+"' /> </a></li><li><a href='#'><p>"+obj[i].goodsName+"</p><i>颜色：枪色</i><i>屏幕尺寸："+obj[i].beiyong8+"</i></a></li><li><span class='price1'>"+obj[i].goodsPrice+".00元</span></li><li><span class='jian'>-</span><b class='num'>1</b><span class='jia'>+</span></li><li><span class='xiaoJi'>4199.00元</span><s>5499.00元</s></li><li><a href='#'><img src='img/star.png' /></a><a class='removes' href='javascript:;'><img class='removeGoods' src='img/dustbin.png'/></a></li></ul>";
-			
-//			saveCookie("goodsId",goodsId,7)
-			jQuery("#buyGoods").append(str);
-		}
-		
-		//jQuery(".xiaoji").html(obj[i].goodsPrice*$(".num")html());
-		
-		//商品数量加减
-		//数量加减
-			var jians=document.getElementsByClassName("jian");
-			var jias=document.getElementsByClassName("jia")
-			//减
-			for(var j in jians){
-				jians[j].onclick=function(){				
-				let count=jQuery(this).next();
-				//alert(count)
-				let num=count.html();
-				//alert(num)
-				num-=1;				
-				if(num<=1){
-					num=1;
-				}
-					count.html(num);
-					
-					xiaoJi = num*parseFloat($(".price1").html());
-					$(".xiaoJi").html(xiaoJi+"元");
-				}
-			
-			}
-			//加
-			for(var j in jias){
-				jias[j].onclick=function(){
-				let count=jQuery(this).prev();
-				let num=parseInt(count.html());
-					num+=1;
-					count.html(num);
-//					$(".xiaoji").html(num*$(".price").html());
-					var xiaoJi;
-					//var priceD = jQuery(this).parent().prev().siblings().eq(4).children().find(".price1").html();
-					xiaoJi = num*parseFloat($(".price1").html());
-					$(".xiaoJi").html(xiaoJi+"元");
-				}
-				
-			}
-			//数量加减结束
-		
-		
-		//删除商品
-		
-		jQuery(".removes").delegate(".removeGoods", "click", function(){ 
-			console.log(this)
-			var that = this;
-			var ids=jQuery(this).parent().parent().parent().attr("ord");
-			
-			jQuery.get("php/deleteGoods.php", { "vipName": vipName, "goodsId": ids },function(data){
-					//console.log(data);
-				if(data=="1"){
-					//location.reload();
-		    		jQuery(that).parents(".clear").remove();
-		    		console.log("删除成功")
-				}else{
-					console.log("删除失败")
-				}
-		    		
-			});
-		
-		});
-		
-		//删除商品结束
-
-	}
-});
-//
-
-
-//jQuery(".removes").delegate(".removeGoods", "click", function(){  
-//	alert(1)
-//	jQuery.get("php/deleteGoods.php", { "vipName": vipName, "goodsId": goodsId },
-//		function(data){
-//			console.log(data);
-//  		location.reload();
-//		});
-//
-//});
-</script>
 <script type="text/javascript" src="js/shoppingCar.js"></script>
+<script type="text/javascript" src="js/checkbox1703.js" ></script>
 	</body>
 </html>
 

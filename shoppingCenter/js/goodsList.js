@@ -47,6 +47,64 @@ window.onscroll = function(){
 	jQuery("#navS1_2").delegate("dd","click",function(){
 		jQuery(this).addClass("redB").siblings().removeClass("redB");
 	});
+	jQuery(function(){
+		jQuery.ajax({
+			url:"php/getGoodsList.php",
+			type:"get",
+			async:true,
+			success:function(data){
+				var obj=eval(data);
+				for(var i=0;i<obj.length;i++){
+					let goodsId=obj[i].goodsId;
+					let goodsName=obj[i].goodsName;
+					let goodsPrice=obj[i].goodsPrice;
+					var goodsImg=obj[i].goodsImg;
+					let goodsDesc=obj[i].goodsDesc;
+					let beiyong1=obj[i].beiyong1;
+					let beiyong2=obj[i].beiyong2;
+					let beiyong3=obj[i].beiyong3;
+					let beiyong4=obj[i].beiyong4;
+					let beiyong5=obj[i].beiyong5;
+					let beiyong6=obj[i].beiyong6;
+					let beiyong7=obj[i].beiyong7;
+					let beiyong8=obj[i].beiyong8;
+					var str = "<li ord='"+goodsId+"'><div class='border'><div class='border_t'></div><div class='border_r'></div><div class='border_b'></div><div class='border_l'></div></div><a href='#' class='imgs'><img src='"+goodsImg+"'/></a><s>"+goodsName+"</s><p><a href='#' class='redT'>"+goodsDesc+"</a>"+beiyong1+"</p><div class='price'>"+goodsPrice+"</div><span><a href='#'>"+beiyong2+"</a></span></li>";
+				jQuery(".mains").append(str);
+				}
+				//自动跳转到商品详情页
+//				var liGoods = document.getElementById("mains").getElementsByTagName("li");
+//				var number;
+//				for(var k=0;k<liGoods.length;k++){
+//					(function(k){
+//						liGoods[k].onclick = function(){
+//							number = liGoods[k].getAttribute("ord");
+//							saveCookie("number",number,7);
+//							location.href="tv.html";
+//						}
+//					})(k);
+//				}
+				jQuery("#mains li").on("click",function(){
+					let number=jQuery(this).attr("ord");
+					saveCookie("number",number,7);
+					window.location.href="tv.html";				
+				});
+				
+			}
+			
+			
+		});
+	})
+	
+	jQuery(function(){
+	var strN =  getCookie("userName");   
+	if(strN==""){
+		jQuery("#denglu").text("亲，请登录");
+		jQuery("#zhuce").text("注册");
+	}else{
+		jQuery("#denglu").text(strN+"，欢迎您！");
+		jQuery("#zhuce").text("我的订单");
+	}
+});
 
 //li的立即购买变背景色
 jQuery("#mains li").delegate("span","mouseenter",function(){
